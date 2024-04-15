@@ -6,7 +6,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./haproxy:/usr/local/etc/haproxy
+      - ./backend/haproxy:/usr/local/etc/haproxy
     depends_on:
       - chatapp1
       - chatapp2
@@ -62,8 +62,33 @@ services:
 
   mongo:
     image: mongo
+    environment:
+      MONGO_PASSWORD: mongo_password
+
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
     ports:
-      - "27017:27017"
-    
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
+    command: ["npm", "run", "start"]
 
+  # tests:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile.dev
+  #   volumes:
+  #     - /app/node_modules
+  #     - ./frontend:/app
+  #   command: ["npm", "run", "test"]
 
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.dev
+    ports:
+      - '3050:80'
