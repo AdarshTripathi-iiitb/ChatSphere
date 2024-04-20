@@ -16,12 +16,21 @@ spec:
         - name: backend
           image: adarshtripathi1/backend-chat
           ports:
-            - containerPort: 5000
+            - containerPort: 8080
           env:
             - name: REDIS_HOST
               value: redis-cluster-ip-service
             - name: REDIS_PORT
               value: '6379'
-            - name: MONGO_URI
-              value: mongodb://mongo:27017/BChat
-
+            - name: MGUSER
+              value: mongodb
+            - name: MGHOST
+              value: mongodb-cluster-ip-service
+            - name: MGPORT
+              value: '27017'
+            - name: MONGO
+              value: mongodb://mongodb-cluster-ip-service:27017/BChat
+      volumes:
+        - name: backend-storage
+          persistentVolumeClaim:
+            claimName: database-persistent-volume-claim
