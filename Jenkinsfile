@@ -73,7 +73,7 @@ pipeline {
                     colorized: true,
                     disableHostKeyChecking: true,
                     inventory: 'ansible-deploy/inventory',
-                    playbook: 'ansible-deploy/playbook.yaml',
+                    playbook: 'ansible-deploy/ansible-book.yaml',
                     sudoUser: null
                 )
             }
