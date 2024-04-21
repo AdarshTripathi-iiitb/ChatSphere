@@ -50,7 +50,7 @@ pipeline {
                 script {
                     docker.withRegistry('', 'DockerHubCred') {
                         sh 'docker tag adarshtripathi1/frontend-chat:latest adarshtripathi1/frontend-chat:latest'
-                        sh 'docker push adarshtripathi1/frontend-chat'
+                        sh 'docker push adarshtripathi1/frontend-chat:latest'
                     }
                 }
             }
@@ -61,7 +61,7 @@ pipeline {
                 script {
                     docker.withRegistry('', 'DockerHubCred') {
                         sh 'docker tag adarshtripathi1/backend-chat:latest adarshtripathi1/backend-chat:latest'
-                        sh 'docker push adarshtripathi1/backend-chat'
+                        sh 'docker push adarshtripathi1/backend-chat:latest'
                     }
                 }
             }
@@ -69,10 +69,13 @@ pipeline {
 
         stage("Ansible Deploy cluster"){
             steps{
-                ansiblePlaybook colorized: true, disableHostKeyChecking: true,
-                 inventory: 'ansible-deploy/inventory', playbook: 'ansible-deploy/playbook.yaml',
-                  sudoUser: null
-
+                ansiblePlaybook(
+                    colorized: true,
+                    disableHostKeyChecking: true,
+                    inventory: 'ansible-deploy/inventory',
+                    playbook: 'ansible-deploy/playbook.yaml',
+                    sudoUser: null
+                )
             }
         }
     }
