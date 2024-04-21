@@ -49,7 +49,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', 'DockerHubCred') {
-                        sh 'docker tag adarshtripathi1/frontend-chat:latest'
+                        sh 'docker tag adarshtripathi1/frontend-chat:latest adarshtripathi1/frontend-chat:latest'
                         sh 'docker push adarshtripathi1/frontend-chat'
                     }
                 }
@@ -60,7 +60,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('', 'DockerHubCred') {
-                        sh 'docker tag adarshtripathi1/backend-chat:latest'
+                        sh 'docker tag adarshtripathi1/backend-chat:latest adarshtripathi1/backend-chat:latest'
                         sh 'docker push adarshtripathi1/backend-chat'
                     }
                 }
