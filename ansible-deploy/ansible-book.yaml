@@ -3,8 +3,7 @@
 - name: Deploy Kubernates cluster
   hosts: localhost
   remote_user: adarsh
-  become: true
-  become_method: sudo
+  become: false
 
   tasks:
     # - name: Run the Secreats and Configurations
