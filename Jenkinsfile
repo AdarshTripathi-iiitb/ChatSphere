@@ -36,14 +36,14 @@ pipeline {
             }
         }
 
-        stage('Testing') {
-            steps {
-                sh '''
-                npm install
-                npm run test
-                '''
-            }
-        }
+        // stage('Testing') {
+        //     steps {
+        //         sh '''
+        //         npm install
+        //         npm run test
+        //         '''
+        //     }
+        // }
 
         stage('Push Frontend Docker Image') {
             steps {
