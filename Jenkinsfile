@@ -67,14 +67,12 @@ pipeline {
             }
         }
 
-        stage('Run Ansible Playbook') {
-            steps {
-                script {
-                    ansiblePlaybook(
-                        playbook: 'deploy.yml',
-                        inventory: 'inventory'
-                    )
-                }
+        stage("Ansible Deploy cluster"){
+            steps{
+                ansiblePlaybook colorized: true, disableHostKeyChecking: true,
+                 inventory: 'ansible-deploy/inventory', playbook: 'ansible-deploy/playbook.yaml',
+                  sudoUser: null
+
             }
         }
     }
