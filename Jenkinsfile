@@ -74,7 +74,7 @@ pipeline {
                     disableHostKeyChecking: true,
                     inventory: 'ansible-deploy/inventory',
                     playbook: 'ansible-deploy/ansible-book.yaml',
-                    sudoUser: null, become:true
+                    sudoUser: null, 
                 )
             }
         }
