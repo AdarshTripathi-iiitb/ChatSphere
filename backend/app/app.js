@@ -154,5 +154,5 @@ subscriber3.on('message', (c, m) =>{
     })
 })
 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 8082
 httpServer.listen(PORT, ()=> console.log(`Server Running @ ${PORT}`))

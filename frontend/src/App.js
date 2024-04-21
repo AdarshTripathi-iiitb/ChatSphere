@@ -4,7 +4,7 @@ import DashBoard from "./screens/dashboard"
 import Scroll from "./components/leftscroll"
 import axios from "axios"
 import socketIOClient from "socket.io-client";
-const ENDPOINT = "http://localhost:8080"
+const ENDPOINT = "http://localhost:8082"
 var socket = socketIOClient(ENDPOINT,{
   transports: [ "websocket" ] 
 })
@@ -134,7 +134,7 @@ const App = () => {
       toUser: ''
     }))
 
-    axios.post('http://localhost:8080/chat', {room:room, user:user}).then(res =>{
+    axios.post('http://localhost:8082/chat', {room:room, user:user}).then(res =>{
       console.log(res)
       if(res.status===200)
         setelt(res.data)
@@ -150,7 +150,7 @@ const App = () => {
     setGm(!gm)
 
     try{
-    const res = await axios.post('http://localhost:8080/chat/dm', {room:room, user:user})
+    const res = await axios.post('http://localhost:8082/chat/dm', {room:room, user:user})
     // fetch('',)
     if(res.status===200)
     setelt(res.data)
@@ -169,7 +169,7 @@ const App = () => {
     setGm(!gm)
 
     try{
-      const res = await axios.post('http://localhost:8080/chat', {room:room, user:user})
+      const res = await axios.post('http://localhost:8082/chat', {room:room, user:user})
       console.log(res.data)
       if(res.status===200)
       setelt(res.data)
