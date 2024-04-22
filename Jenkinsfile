@@ -22,7 +22,7 @@ pipeline {
             steps {
                 sh '''
                 cd frontend
-                docker build -t adarshtripathi1/frontend-chat .
+                docker build -t adarshtripathi1/frontend-chat -f Dockerfile.dev .
                 '''
             }
         }
