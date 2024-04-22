@@ -38,10 +38,8 @@ pipeline {
 
         stage('Test Frontend') {
             steps {
-                sh '''
-                npm install
-                npm run test
-                '''
+                // Run frontend tests
+                sh 'npm test'
             }
         }
 
