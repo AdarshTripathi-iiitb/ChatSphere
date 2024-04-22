@@ -37,11 +37,14 @@ pipeline {
         }
 
         stage('Test Frontend') {
-            steps {
-                // Run frontend tests
+             steps {
+                dir('frontend') {
+                sh 'npm install'
                 sh 'npm test'
             }
         }
+    }
+
 
         stage('Push Frontend Docker Image') {
             steps {
