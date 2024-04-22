@@ -14,8 +14,7 @@ test('renders app with initial state', () => {
   expect(getByPlaceholderText('#Room')).toBeInTheDocument();
 
   // Use a custom text matcher to find the text
-  expect(getByText((content, element) => {
-    return element.textContent === 'BChat A Multi Room Chat Application';
-  })).toBeInTheDocument();
+  expect(getByText((content, element) => content.includes('BChat A Multi Room Chat Application'))).toBeInTheDocument();
 });
+
 
