@@ -1,14 +1,5 @@
-import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import App from './App';
-
-test('renders app with initial state', () => {
-  const { getByText, getByPlaceholderText } = render(<App />);
-  
-  expect(getByText('BChat A Multi Room Chat Application')).toBeInTheDocument();
-  expect(getByPlaceholderText('@Username')).toBeInTheDocument();
-  expect(getByPlaceholderText('#Room')).toBeInTheDocument();
-});
 
 test('renders learn react link', () => {
   render(<App />);
@@ -16,4 +7,15 @@ test('renders learn react link', () => {
   expect(linkElement).toBeInTheDocument();
 });
 
-// Add more tests as needed for your application
+test('renders app with initial state', () => {
+  const { getByText, getByPlaceholderText } = render(<App />);
+  
+  expect(getByPlaceholderText('@Username')).toBeInTheDocument();
+  expect(getByPlaceholderText('#Room')).toBeInTheDocument();
+
+  // Use a custom text matcher to find the text
+  expect(getByText((content, element) => {
+    return element.textContent === 'BChat A Multi Room Chat Application';
+  })).toBeInTheDocument();
+});
+
